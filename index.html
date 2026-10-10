@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radio Bezmiliana · La radio del IES Bezmiliana</title>
+  <meta name="description" content="Radio Bezmiliana, la radio escolar del IES Bezmiliana de Rincón de la Victoria (Málaga). Conoce nuestros programas, nuestro equipo e inscríbete.">
+  <meta name="theme-color" content="#0f1a26">
+  <meta property="og:title" content="Radio Bezmiliana">
+  <meta property="og:description" content="La radio escolar del IES Bezmiliana · Rincón de la Victoria (Málaga) · ¡Inscripciones abiertas!">
+  <meta property="og:image" content="logo-radio-bezmiliana.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="logo-radio-bezmiliana.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- BANNER DE INSCRIPCIONES (aparece al entrar). Solo CSS: se oculta al pulsar cualquier enlace a un ancla (#...) -->
+  <div class="promo" role="dialog" aria-modal="true" aria-labelledby="promo-title">
+    <a class="promo-backdrop" href="#inicio" tabindex="-1" aria-hidden="true"></a>
+    <div class="promo-card">
+      <a class="promo-x" href="#inicio" aria-label="Cerrar banner">×</a>
+      <div class="promo-art" aria-hidden="true">
+        <div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="promo-body">
+        <span class="promo-badge">Inscripciones abiertas</span>
+        <h2 id="promo-title">¡Únete a Radio Bezmiliana!</h2>
+        <!-- EDITAR: fechas y destinatarios reales -->
+        <p>Hasta el <strong>31 de octubre</strong> puedes apuntarte al equipo de la radio del instituto. ¡Todos los cursos son bienvenidos!</p>
+        <div class="promo-actions">
+          <a class="btn btn-primary" href="#inscripciones">Quiero inscribirme</a>
+          <a class="btn btn-ghost-light" href="#inicio">Ahora no</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <!-- CABECERA -->
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#inicio" aria-label="Radio Bezmiliana, inicio">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text"><small>Radio</small>Bezmiliana</span>
+      </a>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Abrir menú">
+      <label for="menu-toggle" class="menu-button" aria-hidden="true"><span></span></label>
+      <nav class="main-nav" aria-label="Principal">
+        <a href="#programas">Programas</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+        <a class="nav-cta" href="#inscripciones">Inscríbete</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">La radio del IES Bezmiliana</p>
+          <h1>La voz de nuestro instituto, <span>en el aire.</span></h1>
+          <p class="lead">Noticias, música, entrevistas y mucho más, hechos por el alumnado y el profesorado de Rincón de la Victoria.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#inscripciones">Inscríbete ahora</a>
+            <a class="btn btn-ghost" href="#programas">Conoce los programas</a>
+          </div>
+        </div>
+        <div class="hero-logo">
+          <img src="logo-radio-bezmiliana.png" alt="Logotipo de Radio Bezmiliana: micrófono, onda de sonido y círculo rojo y azul" width="1254" height="1254">
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMAS -->
+    <section class="section" id="programas">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Lo que hacemos</p>
+          <h2>Nuestros programas</h2>
+          <p>Cada programa lo crea un equipo del instituto. Elige el tuyo.</p>
+        </header>
+
+        <!-- EDITAR: cambia estos programas por los reales (nombre, descripción, quién lo hace) -->
+        <div class="cards">
+          <article class="card">
+            <span class="tag news">Información</span>
+            <h3>Bezmi Noticias</h3>
+            <p>Lo más importante que pasa en el instituto y en Rincón de la Victoria, contado por su alumnado.</p>
+            <p class="meta">Equipo: 2.º ESO · Coordina: Nombre Apellido</p>
+          </article>
+          <article class="card">
+            <span class="tag music">Música</span>
+            <h3>Top Bezmi</h3>
+            <p>Las canciones elegidas por el alumnado, con sus dedicatorias y sus listas favoritas.</p>
+            <p class="meta">Equipo: 3.º ESO · Coordina: Nombre Apellido</p>
+          </article>
+          <article class="card">
+            <span class="tag talk">Entrevistas</span>
+            <h3>Cara a cara</h3>
+            <p>Conversaciones con profesorado, familias, antiguos alumnos y personas del barrio.</p>
+            <p class="meta">Equipo: 4.º ESO · Coordina: Nombre Apellido</p>
+          </article>
+          <article class="card">
+            <span class="tag culture">Cultura</span>
+            <h3>Libros y cine</h3>
+            <p>Recomendaciones, reseñas y debates sobre lo que leemos y lo que vemos.</p>
+            <p class="meta">Equipo: 1.º Bachillerato · Coordina: Nombre Apellido</p>
+          </article>
+          <article class="card">
+            <span class="tag culture">Ciencia</span>
+            <h3>Ciencia al aire</h3>
+            <p>Curiosidades y experimentos explicados de forma clara y divertida.</p>
+            <p class="meta">Equipo: 1.º ESO · Coordina: Nombre Apellido</p>
+          </article>
+          <article class="card">
+            <span class="tag news">Deportes</span>
+            <h3>Bezmi Deportes</h3>
+            <p>Resultados, torneos del recreo y entrevistas a deportistas del centro.</p>
+            <p class="meta">Equipo: 3.º ESO · Coordina: Nombre Apellido</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EQUIPO -->
+    <section class="section section-soft" id="equipo">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Las personas</p>
+          <h2>Nuestro equipo</h2>
+          <p>Profesorado y alumnado que hacen posible Radio Bezmiliana.</p>
+        </header>
+
+        <!-- EDITAR: sustituye los nombres y roles. Las iniciales del círculo se escriben a mano (ej. "MG") -->
+        <h3 class="team-title">Coordinación</h3>
+        <div class="team">
+          <article class="person">
+            <span class="avatar" aria-hidden="true">NA</span>
+            <h4>Nombre Apellido</h4>
+            <p>Coordinación general</p>
+          </article>
+          <article class="person">
+            <span class="avatar" aria-hidden="true">NA</span>
+            <h4>Nombre Apellido</h4>
+            <p>Coordinación técnica</p>
+          </article>
+        </div>
+
+        <h3 class="team-title">Alumnado</h3>
+        <div class="team">
+          <article class="person">
+            <span class="avatar red" aria-hidden="true">NA</span>
+            <h4>Nombre Apellido</h4>
+            <p>Locución</p>
+          </article>
+          <article class="person">
+            <span class="avatar red" aria-hidden="true">NA</span>
+            <h4>Nombre Apellido</h4>
+            <p>Guion y redacción</p>
+          </article>
+          <article class="person">
+            <span class="avatar red" aria-hidden="true">NA</span>
+            <h4>Nombre Apellido</h4>
+            <p>Técnica de sonido</p>
+          </article>
+          <article class="person">
+            <span class="avatar red" aria-hidden="true">NA</span>
+            <h4>Nombre Apellido</h4>
+            <p>Redes y difusión</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOSOTROS -->
+    <section class="section" id="nosotros">
+      <div class="wrap about">
+        <div class="about-logo">
+          <img src="logo-ies-bezmiliana.png" alt="Logotipo del I.E.S. Bezmiliana, Rincón de la Victoria (Málaga)" width="666" height="460" loading="lazy">
+        </div>
+        <div class="about-text">
+          <p class="eyebrow">Quiénes somos</p>
+          <h2>Una radio hecha en el aula</h2>
+          <p>Radio Bezmiliana nace en el <strong>IES Bezmiliana</strong>, en Rincón de la Victoria (Málaga), como un espacio donde el alumnado aprende comunicando: escribe guiones, entrevista, locuta, edita y emite.</p>
+          <ul class="checks">
+            <li>Comunicación oral y escrita en situaciones reales.</li>
+            <li>Trabajo en equipo y creatividad.</li>
+            <li>Una ventana abierta del centro a las familias y al barrio.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSCRIPCIONES -->
+    <section class="section section-dark" id="inscripciones">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Súmate</p>
+          <h2>Inscripciones abiertas</h2>
+          <!-- EDITAR: plazo y requisitos reales -->
+          <p>Hay un hueco para ti, te guste hablar, escribir, editar o simplemente organizar. El plazo termina el <strong>31 de octubre</strong>.</p>
+        </header>
+
+        <div class="roles">
+          <div class="role"><span class="role-ico" aria-hidden="true">🎙️</span><h3>Locución</h3><p>Presenta, entrevista y da vida a los programas.</p></div>
+          <div class="role"><span class="role-ico" aria-hidden="true">✍️</span><h3>Guion</h3><p>Escribe noticias, secciones y entrevistas.</p></div>
+          <div class="role"><span class="role-ico" aria-hidden="true">🎚️</span><h3>Técnica</h3><p>Controla la mesa, graba y edita el sonido.</p></div>
+          <div class="role"><span class="role-ico" aria-hidden="true">📣</span><h3>Difusión</h3><p>Cuenta lo que hacemos en redes y en el centro.</p></div>
+        </div>
+
+        <ol class="steps">
+          <li><strong>Rellena el formulario</strong> con tu nombre, curso y el puesto que te gustaría.</li>
+          <li><strong>Autorización familiar</strong>: entrega la autorización firmada en la sala de profesores.</li>
+          <li><strong>Primera reunión</strong>: te avisaremos del día y la hora para conocer al equipo.</li>
+        </ol>
+
+        <!-- EDITAR: sustituye el enlace por el de vuestro formulario (Google Forms, Microsoft Forms…) -->
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://forms.google.com/" target="_blank" rel="noopener">Abrir formulario de inscripción</a>
+          <a class="btn btn-ghost-light" href="#contacto">Tengo dudas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="section" id="contacto">
+      <div class="wrap contact">
+        <div>
+          <p class="eyebrow">Hablemos</p>
+          <h2>Contacto</h2>
+          <p>¿Quieres proponer un tema, resolver una duda o unirte al equipo? Escríbenos.</p>
+          <ul class="contact-list">
+            <!-- EDITAR: pon aquí el correo, teléfono y redes reales -->
+            <li><span aria-hidden="true">✉️</span> <a href="mailto:radio@iesbezmiliana.es">radio@iesbezmiliana.es</a></li>
+            <li><span aria-hidden="true">📍</span> IES Bezmiliana · Rincón de la Victoria (Málaga)</li>
+            <li><span aria-hidden="true">📸</span> <a href="https://www.instagram.com/" rel="noopener" target="_blank">Instagram</a></li>
+          </ul>
+        </div>
+        <!-- El formulario abre el correo del usuario (no necesita servidor) -->
+        <form class="form" action="mailto:radio@iesbezmiliana.es" method="post" enctype="text/plain">
+          <label>Nombre
+            <input type="text" name="nombre" autocomplete="name" required>
+          </label>
+          <label>Mensaje
+            <textarea name="mensaje" rows="5" required></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIE -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <img src="logo-ies-bezmiliana.png" alt="I.E.S. Bezmiliana" width="666" height="460" loading="lazy">
+      <p><strong>Radio Bezmiliana</strong><br>IES Bezmiliana · Rincón de la Victoria (Málaga)</p>
+      <p class="copy">© 2026 Radio Bezmiliana. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
