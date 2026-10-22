@@ -434,3 +434,7 @@ dialog{border:0;border-radius:20px;padding:28px;width:min(480px,92vw)}dialog::ba
 .checks{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
 .btn-sm{padding:6px 12px;font-size:12px}.ok{color:#146c34;font-weight:700}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+
+/* ---- FIX de FOOTER flotante ---- */
+body{ min-height: 100vh; display: flex; flex-direction: column; }
+main{ flex: 1; }
