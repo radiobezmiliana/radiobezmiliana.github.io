@@ -47,7 +47,7 @@
                     </p>
 
                     <div class="actions">
-                        <button class="btn btn-primary" id="abrir">
+                        <button class="btn btn-primary" href="https://forms.gle/n8F2ccMbpwPYGBrF7">
                             Abrir formulario de inscripción
                         </button>
 
@@ -57,82 +57,6 @@
                     </div>
                 </div>
             </section>
-
-            <dialog id="dlg">
-                <h2>Inscripción</h2>
-
-                <form
-                    class="contact-form"
-                    action="https://formsubmit.co/radiobezmiliana@gmail.com"
-                    method="POST"
-                >
-                    <input
-                        type="hidden"
-                        name="_subject"
-                        value="Nueva inscripción en Radio Bezmiliana"
-                    >
-
-                    <input
-                        type="hidden"
-                        name="_captcha"
-                        value="false"
-                    >
-
-                    <input
-                        type="text"
-                        name="_honey"
-                        class="honeypot"
-                        tabindex="-1"
-                        autocomplete="off"
-                    >
-
-                    <div class="field">
-                        <label for="n">Nombre y apellidos</label>
-                        <input id="n" name="Nombre" required>
-                    </div>
-
-                    <div class="field">
-                        <label for="c">Curso y grupo</label>
-                        <input id="c" name="Curso" required>
-                    </div>
-
-                    <div class="field">
-                        <label for="m">Email</label>
-                        <input
-                            id="m"
-                            type="email"
-                            name="Email"
-                            required
-                        >
-                    </div>
-
-                    <div class="field">
-                        <label for="a">Área de interés</label>
-
-                        <select id="a" name="Area">
-                            <option>Locución</option>
-                            <option>Sonido y edición</option>
-                            <option>Redacción y guion</option>
-                            <option>Redes sociales</option>
-                            <option>Diseño</option>
-                        </select>
-                    </div>
-
-                    <div class="actions" style="margin-top:0">
-                        <button class="btn btn-primary" type="submit">
-                            Enviar inscripción
-                        </button>
-
-                        <button
-                            class="btn btn-secondary"
-                            type="button"
-                            id="cerrar"
-                        >
-                            Cancelar
-                        </button>
-                    </div>
-                </form>
-            </dialog>
         </main>
 
         <script src="data/data.js"></script>
