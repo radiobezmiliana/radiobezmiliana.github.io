@@ -11,24 +11,19 @@ window.RB_DATA = {
   "equipo": {
     "coordinacion": [
       {
-        "nombre": "Nombre Coordinador/a (ejemplo)",
-        "rol": "Coordinación general"
+        "nombre": "Sandra García",
+        "rol": "Profesora"
       },
       {
         "nombre": "Pablo Castro",
         "rol": "2º GMI"
-      }
-    ],
-    "alumnado": [
-      {
-        "nombre": "Alumno/a Ejemplo 1",
-        "rol": "Locución"
       },
       {
-        "nombre": "Alumno/a Ejemplo 2",
-        "rol": "Sonido"
+        "nombre": "Héctor Moreno",
+        "rol": "2º GMI"
       }
-    ]
+    ],
+    "alumnado": []
   },
   "programas": [
     {
