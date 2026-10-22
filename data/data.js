@@ -27,16 +27,6 @@ window.RB_DATA = {
   },
   "programas": [
     {
-      "titulo": "Bezmi Music",
-      "descripcion": "Espacio musical de los recreos del día 22/10/2026",
-      "categoria": "Música",
-      "imagen": "imagenes/bezmi-music.jpeg",
-      "audio": "audios/bezmi-music.mp3",
-      "equipo": [
-        "Pablo Castro"
-      ]
-    },
-    {
       "titulo": "Bezmi Sessions",
       "descripcion": "Conversaciones con alumnado y profesorado sobre música, cultura y vida en el instituto.",
       "categoria": "Entrevistas",
