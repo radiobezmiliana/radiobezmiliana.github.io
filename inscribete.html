@@ -1,6 +1,141 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inscríbete | Radio Bezmiliana</title><meta name="description" content="Inscripciones abiertas en Radio Bezmiliana. Únete a la radio del IES Bezmiliana."><link rel="icon" href="assets/icons/favicon.ico"><link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@400;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"><link rel="stylesheet" href="style.css"></head><body data-page="inscribete"><main><section class="page-hero"><div class="container"><h1>Inscripciones <span>abiertas</span></h1><p>Tu voz tiene un sitio en Radio Bezmiliana.</p></div></section><section class="section" style="padding-top:0"><div class="container" style="max-width:760px"><p style="font-size:19px">Aquí aprenderás haciendo: presentar, entrevistar, escribir guiones, grabar y editar audio y contar lo que pasa en el instituto. No hace falta experiencia: solo ganas de participar, trabajar en equipo y pasarlo bien. Locución, sonido, redacción, redes o diseño: hay un hueco para ti.</p>
-<div class="actions"><button class="btn btn-primary" id="abrir">Abrir formulario de inscripción</button><a class="btn btn-secondary" href="contacto.html">Tengo dudas</a></div></div></section>
-<dialog id="dlg"><h2>Inscripción</h2><form class="contact-form" action="https://formsubmit.co/radiobezmiliana@gmail.com" method="POST"><input type="hidden" name="_subject" value="Nueva inscripción en Radio Bezmiliana"><input type="hidden" name="_captcha" value="false"><input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off">
-<div class="field"><label for="n">Nombre y apellidos</label><input id="n" name="Nombre" required></div><div class="field"><label for="c">Curso y grupo</label><input id="c" name="Curso" required></div><div class="field"><label for="m">Email</label><input id="m" type="email" name="Email" required></div>
-<div class="field"><label for="a">Área de interés</label><select id="a" name="Area"><option>Locución</option><option>Sonido y edición</option><option>Redacción y guion</option><option>Redes sociales</option><option>Diseño</option></select></div>
-<div class="actions" style="margin-top:0"><button class="btn btn-primary" type="submit">Enviar inscripción</button><button class="btn btn-secondary" type="button" id="cerrar">Cancelar</button></div></form></dialog></main><script src="data/data.js"></script><script src="js/site.js"></script></body></html>
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Inscríbete | Radio Bezmiliana</title>
+
+        <meta
+            name="description"
+            content="Inscripciones abiertas en Radio Bezmiliana. Únete a la radio del IES Bezmiliana."
+        >
+
+        <link rel="icon" href="assets/icons/favicon.ico">
+        <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@400;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        >
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body data-page="inscribete">
+        <main>
+            <section class="page-hero">
+                <div class="container">
+                    <h1>Inscripciones <span>abiertas</span></h1>
+
+                    <p>
+                        Tu voz tiene un sitio en Radio Bezmiliana.
+                    </p>
+                </div>
+            </section>
+
+            <section class="section" style="padding-top:0">
+                <div class="container" style="max-width:760px">
+                    <p style="font-size:19px">
+                        Aquí aprenderás haciendo: presentar, entrevistar,
+                        escribir guiones, grabar y editar audio y contar lo
+                        que pasa en el instituto. No hace falta experiencia:
+                        solo ganas de participar, trabajar en equipo y pasarlo
+                        bien. Locución, sonido, redacción, redes o diseño:
+                        hay un hueco para ti.
+                    </p>
+
+                    <div class="actions">
+                        <button class="btn btn-primary" id="abrir">
+                            Abrir formulario de inscripción
+                        </button>
+
+                        <a class="btn btn-secondary" href="contacto.html">
+                            Tengo dudas
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <dialog id="dlg">
+                <h2>Inscripción</h2>
+
+                <form
+                    class="contact-form"
+                    action="https://formsubmit.co/radiobezmiliana@gmail.com"
+                    method="POST"
+                >
+                    <input
+                        type="hidden"
+                        name="_subject"
+                        value="Nueva inscripción en Radio Bezmiliana"
+                    >
+
+                    <input
+                        type="hidden"
+                        name="_captcha"
+                        value="false"
+                    >
+
+                    <input
+                        type="text"
+                        name="_honey"
+                        class="honeypot"
+                        tabindex="-1"
+                        autocomplete="off"
+                    >
+
+                    <div class="field">
+                        <label for="n">Nombre y apellidos</label>
+                        <input id="n" name="Nombre" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="c">Curso y grupo</label>
+                        <input id="c" name="Curso" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="m">Email</label>
+                        <input
+                            id="m"
+                            type="email"
+                            name="Email"
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="a">Área de interés</label>
+
+                        <select id="a" name="Area">
+                            <option>Locución</option>
+                            <option>Sonido y edición</option>
+                            <option>Redacción y guion</option>
+                            <option>Redes sociales</option>
+                            <option>Diseño</option>
+                        </select>
+                    </div>
+
+                    <div class="actions" style="margin-top:0">
+                        <button class="btn btn-primary" type="submit">
+                            Enviar inscripción
+                        </button>
+
+                        <button
+                            class="btn btn-secondary"
+                            type="button"
+                            id="cerrar"
+                        >
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </dialog>
+        </main>
+
+        <script src="data/data.js"></script>
+        <script src="js/site.js"></script>
+    </body>
+</html>
