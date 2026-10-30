@@ -21,6 +21,10 @@ window.RB_DATA = {
       {
         "nombre": "Héctor Moreno",
         "rol": "2º GMI"
+      },
+      {
+        "nombre": "PRUEBA",
+        "rol": "TEST"
       }
     ],
     "alumnado": []
