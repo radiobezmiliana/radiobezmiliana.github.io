@@ -46,7 +46,6 @@ async function paginas(borrar){
  await sitemap();
 }
 const msg=t=>{$("msg").textContent=t;setTimeout(()=>$("msg").textContent="",4000)};
-if(!window.showDirectoryPicker)$("aviso").hidden=false;
 $("conectar").onclick=async()=>{
  root=await showDirectoryPicker({mode:"readwrite"});
  try{const f=await(await(await dir("data")).getFileHandle("data.js")).getFile(),t=await f.text();D=JSON.parse(t.slice(t.indexOf("{"),t.lastIndexOf("}")+1))}
@@ -65,13 +64,16 @@ document.addEventListener("click",async ev=>{
  let del="";if(b.dataset.p)del=code(D.programas.splice(+b.dataset.p,1)[0]);else{const[s,i]=b.dataset.m.split(":");D.equipo[s].splice(+i,1)}
  await save();await paginas(del);draw();msg("Eliminado ✓");
 });
-$("fp").onsubmit=async ev=>{ev.preventDefault();const f=ev.target,m=f.elements,s=slug(m.titulo.value),a=m.audio.files[0],i=m.imagen.files[0];
+$("fp").onsubmit=async ev=>{ev.preventDefault();const f=ev.target,m=f.elements,s=slug(m.codigo.value),a=m.audio.files[0],i=m.imagen.files[0];
+ if(!s||D.programas.some(p=>code(p)==s)){alert("Ya existe un programa con el código «"+s+"». Elige otro.");return}
  await write(`audios/${s}.mp3`,a);let img="";
  if(i){img=`imagenes/${s}.${i.name.split(".").pop().toLowerCase()}`;await write(img,i)}
  const c=m.categoria.value.trim();if(!D.categorias.includes(c))D.categorias.push(c);
  D.programas.unshift({titulo:m.titulo.value.trim(),codigo:s,descripcion:m.descripcion.value.trim(),categoria:c,imagen:img,audio:`audios/${s}.mp3`,equipo:[...f.querySelectorAll("[name=eq]:checked")].map(x=>x.value)});
- await save();await paginas();f.reset();draw();msg("Programa guardado ✓");
+ await save();await paginas();f.reset();m.codigo.dataset.manual="";draw();msg("Programa guardado ✓");
 };
+$("fp").elements.titulo.addEventListener("input",ev=>{const c=$("fp").elements.codigo;if(!c.dataset.manual)c.value=slug(ev.target.value)});
+$("fp").elements.codigo.addEventListener("input",ev=>{ev.target.dataset.manual=ev.target.value?"1":""});
 $("fm").onsubmit=async ev=>{ev.preventDefault();const m=ev.target.elements;
  D.equipo[m.seccion.value].push({nombre:m.nombre.value.trim(),rol:m.rol.value.trim()});
  await save();ev.target.reset();draw();msg("Miembro guardado ✓");

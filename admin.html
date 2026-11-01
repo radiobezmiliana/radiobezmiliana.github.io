@@ -38,10 +38,6 @@
 
             <section class="section" style="padding-top:0">
                 <div class="container">
-                    <p class="form-status error" id="aviso" hidden>
-                        Tu navegador no permite este panel. Usa Chrome o Edge.
-                    </p>
-
                     <div class="panel">
                         <h2>1. Conectar</h2>
 
@@ -78,6 +74,22 @@
 
                                         <datalist id="cats"></datalist>
                                     </div>
+                                </div>
+
+                                <div class="field">
+                                    <label>Código del programa</label>
+                                    <input
+                                        name="codigo"
+                                        required
+                                        pattern="[a-z0-9]+(-[a-z0-9]+)*"
+                                        placeholder="bezmi-sessions"
+                                    >
+                                    <small>
+                                        Será la dirección de su página:
+                                        /programas/<b>codigo</b>/. Solo minúsculas,
+                                        números y guiones. Se rellena solo desde el
+                                        título, pero puedes cambiarlo.
+                                    </small>
                                 </div>
 
                                 <div class="field">
