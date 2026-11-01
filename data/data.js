@@ -21,10 +21,6 @@ window.RB_DATA = {
       {
         "nombre": "Héctor Moreno",
         "rol": "2º GMI"
-      },
-      {
-        "nombre": "PRUEBA",
-        "rol": "TEST"
       }
     ],
     "alumnado": []
@@ -32,6 +28,7 @@ window.RB_DATA = {
   "programas": [
     {
       "titulo": "Bezmi Sessions",
+      "codigo": "bezmi-sessions",
       "descripcion": "Conversaciones con alumnado y profesorado sobre música, cultura y vida en el instituto.",
       "categoria": "Entrevistas",
       "imagen": "",
@@ -42,6 +39,7 @@ window.RB_DATA = {
     },
     {
       "titulo": "Recreo al Aire",
+      "codigo": "recreo-al-aire",
       "descripcion": "Noticias del centro, agenda y recomendaciones para el recreo.",
       "categoria": "Noticias",
       "imagen": "",
@@ -52,6 +50,7 @@ window.RB_DATA = {
     },
     {
       "titulo": "Tech & Aula",
+      "codigo": "tech-aula",
       "descripcion": "Informática y proyectos tecnológicos explicados de forma sencilla.",
       "categoria": "Ciencia",
       "imagen": "",
