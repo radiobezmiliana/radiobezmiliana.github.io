@@ -45,20 +45,26 @@ async function paginas(borrar){
  if(borrar)try{await pd.removeEntry(borrar,{recursive:true})}catch{}
  await sitemap();
 }
+const SECC=[["profesorado","Profesorado"],["coordinacion","Coordinación"],["miembros","Equipo"]];
+function normalizar(){
+ D.equipo=D.equipo||{};
+ if(D.equipo.alumnado){D.equipo.miembros=[...(D.equipo.miembros||[]),...D.equipo.alumnado];delete D.equipo.alumnado}
+ SECC.forEach(([k])=>D.equipo[k]=D.equipo[k]||[]);
+}
 let ed=null;
 const msg=t=>{$("msg").textContent=t;setTimeout(()=>$("msg").textContent="",4000)};
 $("conectar").onclick=async()=>{
  root=await showDirectoryPicker({mode:"readwrite"});
  try{const f=await(await(await dir("data")).getFileHandle("data.js")).getFile(),t=await f.text();D=JSON.parse(t.slice(t.indexOf("{"),t.lastIndexOf("}")+1))}
  catch{alert("No encuentro data/data.js. Elige la carpeta raíz de la web (donde está index.html).");return}
- $("panel").hidden=false;draw();
+ normalizar();$("panel").hidden=false;draw();
 };
 function draw(){
- const all=[...D.equipo.coordinacion,...D.equipo.alumnado].map(m=>m.nombre);
+ const all=SECC.flatMap(([k])=>D.equipo[k]).map(m=>m.nombre);
  $("cats").innerHTML=D.categorias.map(c=>`<option value="${e(c)}">`).join("");
  $("eq").innerHTML=all.length?all.map(n=>`<label><input type="checkbox" name="eq" value="${e(n)}"> ${e(n)}</label>`).join(""):"Añade antes miembros del equipo.";
  $("lp").innerHTML=D.programas.map((p,i)=>`<div class="row"><span><b>${e(p.titulo)}</b> · ${e(p.categoria)}</span><span class="acciones"><button class="btn btn-secondary btn-sm" data-e="${i}">Editar</button><button class="btn btn-secondary btn-sm" data-p="${i}">Eliminar</button></span></div>`).join("")||"Sin programas.";
- $("lm").innerHTML=["coordinacion","alumnado"].flatMap(s=>D.equipo[s].map((m,i)=>`<div class="row"><span><b>${e(m.nombre)}</b> · ${s}${m.rol?" · "+e(m.rol):""}</span><button class="btn btn-secondary btn-sm" data-m="${s}:${i}">Eliminar</button></div>`)).join("")||"Sin miembros.";
+ $("lm").innerHTML=SECC.flatMap(([s,et])=>D.equipo[s].map((m,i)=>`<div class="row"><span><b>${e(m.nombre)}</b> · ${et}${m.rol?" · "+e(m.rol):""}</span><button class="btn btn-secondary btn-sm" data-m="${s}:${i}">Eliminar</button></div>`)).join("")||"Sin miembros.";
 }
 document.addEventListener("click",async ev=>{
  const b=ev.target.closest("button[data-p],button[data-m]");if(!b||!confirm("¿Eliminar?"))return;
@@ -77,6 +83,7 @@ function editar(i){
  m.categoria.value=p.categoria;m.descripcion.value=p.descripcion;
  m.audio.value="";m.imagen.value="";m.video.value=p.video||"";m.audio.required=false;
  m.videopodcast.value=p.video?"si":"no";ajustar();
+ m.invitados.value=(p.invitados||[]).join(", ");
  const hay=[...f.querySelectorAll("[name=eq]")].map(c=>c.value);
  (p.equipo||[]).filter(n=>!hay.includes(n)).forEach(n=>{if(!f.querySelector("[name=eq]"))$("eq").innerHTML="";$("eq").insertAdjacentHTML("beforeend",`<label><input type="checkbox" name="eq" value="${e(n)}"> ${e(n)}</label>`)});
  f.querySelectorAll("[name=eq]").forEach(c=>c.checked=(p.equipo||[]).includes(c.value));
@@ -102,7 +109,7 @@ $("fp").onsubmit=async ev=>{ev.preventDefault();const f=ev.target,m=f.elements,s
  if(a){audio=`audios/${s}.mp3`;await write(audio,a)}
  if(i){img=`imagenes/${s}.${i.name.split(".").pop().toLowerCase()}`;await write(img,i)}
  const c=m.categoria.value.trim();if(!D.categorias.includes(c))D.categorias.push(c);
- const p={titulo:m.titulo.value.trim(),codigo:s,descripcion:m.descripcion.value.trim(),categoria:c,imagen:img,audio,video,equipo:[...f.querySelectorAll("[name=eq]:checked")].map(x=>x.value)};
+ const p={titulo:m.titulo.value.trim(),codigo:s,descripcion:m.descripcion.value.trim(),categoria:c,imagen:img,audio,video,equipo:[...f.querySelectorAll("[name=eq]:checked")].map(x=>x.value),invitados:m.invitados.value.split(",").map(x=>x.trim()).filter(Boolean)};
  let borrar="";
  if(old){if(code(old)!=s)borrar=code(old);D.programas[ed]=p}else D.programas.unshift(p);
  await save();await paginas(borrar);const editado=!!old;salirEdicion();draw();msg(editado?"Cambios guardados ✓":"Programa guardado ✓");

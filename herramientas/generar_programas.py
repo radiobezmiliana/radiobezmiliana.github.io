@@ -2,7 +2,7 @@
 """Genera programas/CODIGO/index.html para cada programa de data/data.js
 y actualiza sitemap.xml. Ejecútalo desde la raíz de la web:
     python3 herramientas/generar_programas.py
-(El panel admin.html hace lo mismo automáticamente al guardar un programa.)"""
+(El panel de administración hace lo mismo automáticamente al guardar un programa.)"""
 import json, re, shutil, html, pathlib, unicodedata
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DOM = "https://www.radiobezmiliana.es"

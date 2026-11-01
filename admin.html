@@ -3,6 +3,7 @@
 <html lang="es">
     <head>
         <meta charset="utf-8">
+        <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Administración | Radio Bezmiliana</title>
@@ -167,6 +168,18 @@
                                     <div class="checks" id="eq"></div>
                                 </div>
 
+                                <div class="field">
+                                    <label>Invitados (opcional)</label>
+                                    <input
+                                        name="invitados"
+                                        placeholder="Alu42, Profe3"
+                                    >
+                                    <small>
+                                        Sepáralos con comas. Si lo dejas en blanco,
+                                        el programa no muestra invitados.
+                                    </small>
+                                </div>
+
                                 <p class="form-status" id="ayuda-edicion" hidden>
                                     Editando un programa. Si no eliges un nuevo
                                     mp3 o una nueva imagen, se mantienen los actuales.
@@ -207,12 +220,16 @@
                                         <label>Sección</label>
 
                                         <select name="seccion">
+                                            <option value="profesorado">
+                                                Profesorado
+                                            </option>
+
                                             <option value="coordinacion">
                                                 Coordinación
                                             </option>
 
-                                            <option value="alumnado">
-                                                Alumnado
+                                            <option value="miembros">
+                                                Equipo
                                             </option>
                                         </select>
                                     </div>

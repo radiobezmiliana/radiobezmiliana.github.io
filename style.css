@@ -315,7 +315,7 @@ audio{ width: 100%; height: 38px; }
 
 /* ---------- Equipo ---------- */
 .team-section{ background: #f7f8f9; }
-.team-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.team-grid{ display: flex; flex-wrap: wrap; gap: 15px; }
 .team-card{ display: flex; gap: 18px; padding: 23px; background: #fff; border: 1px solid var(--line); border-radius: 18px; }
 .avatar{ width: 54px; height: 54px; flex: 0 0 54px; border-radius: 16px; background: var(--ink); color: #fff; display: grid; place-items: center; font-weight: 900; font-size: 20px; font-family: var(--font-display); }
 .avatar.red{ background: var(--red); }
@@ -464,3 +464,10 @@ main{ flex: 1; }
 .btn-videopodcast:hover .play{transform:scale(1.12)}
 .btn-videopodcast .play svg{width:20px;height:20px;fill:currentColor;margin-left:3px}
 .btn-videopodcast small{display:block;margin-bottom:2px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+
+/* Equipo: 4 por fila; si una sección tiene menos de 4, se centra */
+.team-grid .team-card{ flex: 0 0 calc((100% - 45px) / 4); min-width: 0; }
+.team-grid.few{ justify-content: center; }
+.team-grid > p{ flex: 1 0 100%; }
+@media (max-width: 1000px){ .team-grid .team-card{ flex-basis: calc((100% - 15px) / 2); } }
+@media (max-width: 600px){ .team-grid .team-card{ flex-basis: 100%; } }

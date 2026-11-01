@@ -9,11 +9,13 @@ window.RB_DATA = {
     "Deportes"
   ],
   "equipo": {
-    "coordinacion": [
+    "profesorado": [
       {
         "nombre": "Sandra García",
         "rol": "Profesora"
-      },
+      }
+    ],
+    "coordinacion": [
       {
         "nombre": "Pablo Castro",
         "rol": "2º GMI"
@@ -23,7 +25,7 @@ window.RB_DATA = {
         "rol": "2º GMI"
       }
     ],
-    "alumnado": []
+    "miembros": []
   },
   "programas": [
     {
@@ -33,7 +35,6 @@ window.RB_DATA = {
       "categoria": "Entrevistas",
       "imagen": "",
       "audio": "audios/bezmi-sessions-demo.mp3",
-      "video": "",
       "equipo": [
         "Alumno/a Ejemplo 1"
       ]
