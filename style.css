@@ -451,3 +451,16 @@ main{ flex: 1; }
 .detail-crew{margin:0;padding-left:20px;color:var(--muted)}
 @media(max-width:760px){.program-detail{grid-template-columns:1fr;gap:24px}.detail-cover{max-width:320px}}
 .field small{display:block;margin-top:6px;font-size:12px;color:var(--muted);line-height:1.4}
+.acciones{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.badge-video{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;background:var(--ink);color:#fff;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle}
+
+/* Portadas de programa: mismo formato cuadrado en listado y en la página individual */
+.program-card .cover{height:auto;aspect-ratio:1/1;font-size:96px}
+/* Botón del videopodcast */
+.btn-videopodcast{display:inline-flex;align-items:center;gap:14px;margin:0 0 32px;padding:12px 28px 12px 12px;border-radius:999px;background:linear-gradient(135deg,var(--red),var(--red-dark));color:#fff;text-decoration:none;font-weight:800;font-size:18px;line-height:1.15;box-shadow:0 14px 34px rgba(229,27,35,.35);transition:transform var(--speed),box-shadow var(--speed)}
+.btn-videopodcast:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 20px 44px rgba(229,27,35,.45)}
+.btn-videopodcast:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.btn-videopodcast .play{width:48px;height:48px;border-radius:50%;background:#fff;color:var(--red);display:grid;place-items:center;flex:none;transition:transform var(--speed)}
+.btn-videopodcast:hover .play{transform:scale(1.12)}
+.btn-videopodcast .play svg{width:20px;height:20px;fill:currentColor;margin-left:3px}
+.btn-videopodcast small{display:block;margin-bottom:2px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.85}

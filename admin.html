@@ -54,7 +54,7 @@
 
                     <div id="panel" hidden>
                         <div class="panel">
-                            <h2>2. Subir programa</h2>
+                            <h2 id="ftitulo">2. Subir programa</h2>
 
                             <form class="contact-form" id="fp">
                                 <div class="form-row">
@@ -105,6 +105,11 @@
                                             name="imagen"
                                             accept="image/*"
                                         >
+                                        <small>
+                                            Imagen <b>cuadrada de 1000 × 1000 px</b>
+                                            (mínimo 800 × 800), en JPG, PNG o WebP.
+                                            Si no es cuadrada, se recorta por los lados.
+                                        </small>
                                     </div>
 
                                     <div class="field">
@@ -119,13 +124,70 @@
                                 </div>
 
                                 <div class="field">
+                                    <label>¿Es un video-podcast?</label>
+
+                                    <div class="checks">
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="videopodcast"
+                                                value="no"
+                                                checked
+                                            >
+                                            No
+                                        </label>
+
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="videopodcast"
+                                                value="si"
+                                            >
+                                            Sí
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="field" id="campo-video" hidden>
+                                    <label>Enlace de YouTube</label>
+                                    <input
+                                        type="url"
+                                        name="video"
+                                        placeholder="https://www.youtube.com/watch?v=..."
+                                        disabled
+                                    >
+                                    <small>
+                                        En la página del programa saldrá un botón
+                                        «Ver el videopodcast» que abre este enlace.
+                                    </small>
+                                </div>
+
+                                <div class="field">
                                     <label>Equipo que lo ha realizado</label>
                                     <div class="checks" id="eq"></div>
                                 </div>
 
-                                <div>
-                                    <button class="btn btn-primary" type="submit">
+                                <p class="form-status" id="ayuda-edicion" hidden>
+                                    Editando un programa. Si no eliges un nuevo
+                                    mp3 o una nueva imagen, se mantienen los actuales.
+                                </p>
+
+                                <div class="acciones">
+                                    <button
+                                        class="btn btn-primary"
+                                        type="submit"
+                                        id="guardar"
+                                    >
                                         Guardar programa
+                                    </button>
+
+                                    <button
+                                        class="btn btn-secondary"
+                                        type="button"
+                                        id="cancelar"
+                                        hidden
+                                    >
+                                        Cancelar edición
                                     </button>
                                 </div>
                             </form>

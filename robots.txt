@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /audios/
 
 Sitemap: https://www.radiobezmiliana.es/sitemap.xml

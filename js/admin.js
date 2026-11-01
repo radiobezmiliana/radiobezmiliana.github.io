@@ -45,6 +45,7 @@ async function paginas(borrar){
  if(borrar)try{await pd.removeEntry(borrar,{recursive:true})}catch{}
  await sitemap();
 }
+let ed=null;
 const msg=t=>{$("msg").textContent=t;setTimeout(()=>$("msg").textContent="",4000)};
 $("conectar").onclick=async()=>{
  root=await showDirectoryPicker({mode:"readwrite"});
@@ -56,21 +57,55 @@ function draw(){
  const all=[...D.equipo.coordinacion,...D.equipo.alumnado].map(m=>m.nombre);
  $("cats").innerHTML=D.categorias.map(c=>`<option value="${e(c)}">`).join("");
  $("eq").innerHTML=all.length?all.map(n=>`<label><input type="checkbox" name="eq" value="${e(n)}"> ${e(n)}</label>`).join(""):"Añade antes miembros del equipo.";
- $("lp").innerHTML=D.programas.map((p,i)=>`<div class="row"><span><b>${e(p.titulo)}</b> · ${e(p.categoria)}</span><button class="btn btn-secondary btn-sm" data-p="${i}">Eliminar</button></div>`).join("")||"Sin programas.";
+ $("lp").innerHTML=D.programas.map((p,i)=>`<div class="row"><span><b>${e(p.titulo)}</b> · ${e(p.categoria)}</span><span class="acciones"><button class="btn btn-secondary btn-sm" data-e="${i}">Editar</button><button class="btn btn-secondary btn-sm" data-p="${i}">Eliminar</button></span></div>`).join("")||"Sin programas.";
  $("lm").innerHTML=["coordinacion","alumnado"].flatMap(s=>D.equipo[s].map((m,i)=>`<div class="row"><span><b>${e(m.nombre)}</b> · ${s}${m.rol?" · "+e(m.rol):""}</span><button class="btn btn-secondary btn-sm" data-m="${s}:${i}">Eliminar</button></div>`)).join("")||"Sin miembros.";
 }
 document.addEventListener("click",async ev=>{
  const b=ev.target.closest("button[data-p],button[data-m]");if(!b||!confirm("¿Eliminar?"))return;
  let del="";if(b.dataset.p)del=code(D.programas.splice(+b.dataset.p,1)[0]);else{const[s,i]=b.dataset.m.split(":");D.equipo[s].splice(+i,1)}
- await save();await paginas(del);draw();msg("Eliminado ✓");
+ await save();await paginas(del);if(b.dataset.p)salirEdicion();draw();msg("Eliminado ✓");
 });
-$("fp").onsubmit=async ev=>{ev.preventDefault();const f=ev.target,m=f.elements,s=slug(m.codigo.value),a=m.audio.files[0],i=m.imagen.files[0];
- if(!s||D.programas.some(p=>code(p)==s)){alert("Ya existe un programa con el código «"+s+"». Elige otro.");return}
- await write(`audios/${s}.mp3`,a);let img="";
+const YT=/^https?:\/\/(www\.|m\.|music\.)?(youtube\.com|youtu\.be|youtube-nocookie\.com)\//i;
+function ajustar(){
+ const m=$("fp").elements,si=m.videopodcast.value=="si";
+ $("campo-video").hidden=!si;m.video.disabled=!si;m.video.required=si;
+ if(!si)m.video.value="";
+}
+function editar(i){
+ const p=D.programas[i],f=$("fp"),m=f.elements;ed=i;
+ m.titulo.value=p.titulo;m.codigo.value=code(p);m.codigo.dataset.manual="1";
+ m.categoria.value=p.categoria;m.descripcion.value=p.descripcion;
+ m.audio.value="";m.imagen.value="";m.video.value=p.video||"";m.audio.required=false;
+ m.videopodcast.value=p.video?"si":"no";ajustar();
+ const hay=[...f.querySelectorAll("[name=eq]")].map(c=>c.value);
+ (p.equipo||[]).filter(n=>!hay.includes(n)).forEach(n=>{if(!f.querySelector("[name=eq]"))$("eq").innerHTML="";$("eq").insertAdjacentHTML("beforeend",`<label><input type="checkbox" name="eq" value="${e(n)}"> ${e(n)}</label>`)});
+ f.querySelectorAll("[name=eq]").forEach(c=>c.checked=(p.equipo||[]).includes(c.value));
+ $("ftitulo").textContent="2. Editar programa";$("guardar").textContent="Guardar cambios";
+ $("cancelar").hidden=false;$("ayuda-edicion").hidden=false;
+ f.scrollIntoView({behavior:"smooth"});
+}
+function salirEdicion(){
+ const f=$("fp");ed=null;f.reset();f.elements.codigo.dataset.manual="";f.elements.audio.required=true;ajustar();
+ $("ftitulo").textContent="2. Subir programa";$("guardar").textContent="Guardar programa";
+ $("cancelar").hidden=true;$("ayuda-edicion").hidden=true;
+}
+$("cancelar").onclick=salirEdicion;
+$("fp").querySelectorAll("[name=videopodcast]").forEach(r=>r.addEventListener("change",ajustar));
+document.addEventListener("click",ev=>{const b=ev.target.closest("button[data-e]");if(b)editar(+b.dataset.e)});
+$("fp").onsubmit=async ev=>{ev.preventDefault();const f=ev.target,m=f.elements,s=slug(m.codigo.value),a=m.audio.files[0],i=m.imagen.files[0],old=ed===null?null:D.programas[ed];
+ const si=m.videopodcast.value=="si",video=si?m.video.value.trim():"";
+ if(si&&!YT.test(video)){alert("Pon un enlace válido de YouTube (youtube.com o youtu.be).");return}
+ if(!s||D.programas.some(p=>p!==old&&code(p)==s)){alert("Ya existe un programa con el código «"+s+"». Elige otro.");return}
+ if(i&&window.createImageBitmap){try{const b=await createImageBitmap(i),w=b.width,h=b.height;if(b.close)b.close();
+  if((w/h<.98||w/h>1.02||w<800)&&!confirm(`La imagen mide ${w}×${h} px. Lo ideal es una imagen cuadrada de 1000×1000 px; si no, se recortará al mostrarse. ¿Subirla igualmente?`))return}catch{}}
+ let audio=old?old.audio:`audios/${s}.mp3`,img=old?old.imagen:"";
+ if(a){audio=`audios/${s}.mp3`;await write(audio,a)}
  if(i){img=`imagenes/${s}.${i.name.split(".").pop().toLowerCase()}`;await write(img,i)}
  const c=m.categoria.value.trim();if(!D.categorias.includes(c))D.categorias.push(c);
- D.programas.unshift({titulo:m.titulo.value.trim(),codigo:s,descripcion:m.descripcion.value.trim(),categoria:c,imagen:img,audio:`audios/${s}.mp3`,equipo:[...f.querySelectorAll("[name=eq]:checked")].map(x=>x.value)});
- await save();await paginas();f.reset();m.codigo.dataset.manual="";draw();msg("Programa guardado ✓");
+ const p={titulo:m.titulo.value.trim(),codigo:s,descripcion:m.descripcion.value.trim(),categoria:c,imagen:img,audio,video,equipo:[...f.querySelectorAll("[name=eq]:checked")].map(x=>x.value)};
+ let borrar="";
+ if(old){if(code(old)!=s)borrar=code(old);D.programas[ed]=p}else D.programas.unshift(p);
+ await save();await paginas(borrar);const editado=!!old;salirEdicion();draw();msg(editado?"Cambios guardados ✓":"Programa guardado ✓");
 };
 $("fp").elements.titulo.addEventListener("input",ev=>{const c=$("fp").elements.codigo;if(!c.dataset.manual)c.value=slug(ev.target.value)});
 $("fp").elements.codigo.addEventListener("input",ev=>{ev.target.dataset.manual=ev.target.value?"1":""});
