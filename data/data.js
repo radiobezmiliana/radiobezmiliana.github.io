@@ -13,6 +13,10 @@ window.RB_DATA = {
       {
         "nombre": "Sandra García",
         "rol": "Profesora"
+      },
+      {
+        "nombre": "Elena Rodriguez",
+        "rol": "Profesora"
       }
     ],
     "coordinacion": [
@@ -23,6 +27,10 @@ window.RB_DATA = {
       {
         "nombre": "Héctor Moreno",
         "rol": "2º GMI"
+      },
+      {
+        "nombre": "Antonio Escaño",
+        "rol": "1º GMI"
       }
     ],
     "miembros": []
