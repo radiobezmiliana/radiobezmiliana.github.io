@@ -25,15 +25,64 @@ window.RB_DATA = {
         "rol": "2º GMI"
       },
       {
+        "nombre": "Antonio Escaño",
+        "rol": "1º GMI"
+      },
+      {
         "nombre": "Héctor Moreno",
+        "rol": "2º GMI"
+      }
+    ],
+    "miembros": [
+      {
+        "nombre": "Carla Aranda",
+        "rol": "1º ESO A"
+      },
+      {
+        "nombre": "Hugo Ariza",
+        "rol": "1º BACH ARTE"
+      },
+      {
+        "nombre": "Alba Bermúdez",
         "rol": "2º GMI"
       },
       {
-        "nombre": "Antonio Escaño",
+        "nombre": "Ángela Carratalá",
+        "rol": "4º ESO B"
+      },
+      {
+        "nombre": "David Espino",
+        "rol": "2º GMI"
+      },
+      {
+        "nombre": "Adrián Fernández",
         "rol": "1º GMI"
+      },
+      {
+        "nombre": "Rafael González",
+        "rol": "2º GMI"
+      },
+      {
+        "nombre": "Curro Heredia",
+        "rol": "1º GMI"
+      },
+      {
+        "nombre": "Alejandro Luque",
+        "rol": "1º GSA"
+      },
+      {
+        "nombre": "Sara Matas",
+        "rol": "2º ESO C"
+      },
+      {
+        "nombre": "Adam Medrano",
+        "rol": "1º GMI"
+      },
+      {
+        "nombre": "Nerea Ruiz",
+        "rol": "2º BACH ARTE"
       }
-    ],
-    "miembros": []
+    ]
   },
   "programas": [
     {
