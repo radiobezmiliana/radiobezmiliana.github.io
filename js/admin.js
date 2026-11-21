@@ -1,6 +1,7 @@
 const $=s=>document.querySelector(s);
 const e=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const slug=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||String(Date.now());
+const yt=u=>{try{const x=new URL(u),h=x.hostname.replace(/^(www|m|music)\./,"");let i="";if(h==="youtu.be")i=x.pathname.slice(1).split("/")[0];else if(h.startsWith("youtube"))i=x.searchParams.get("v")||(x.pathname.match(/^\/(?:embed|shorts|live|v)\/([^/?]+)/)||[])[1]||"";return /^[\w-]{11}$/.test(i)?i:""}catch{return ""}};
 const DOM="https://www.radiobezmiliana.es",code=p=>p.codigo||slug(p.titulo);
 const SECC=[["profesorado","Profesorado"],["coordinacion","Coordinación"],["miembros","Equipo"]];
 const YT=/^https?:\/\/(www\.|m\.|music\.)?(youtube\.com|youtu\.be|youtube-nocookie\.com)\//i;
@@ -95,7 +96,7 @@ const VIEWS={
   ${q?"":`<p class="m">El orden de esta lista es el de la web: los 3 primeros salen en la página de inicio.</p>`}<div class="card">${L.length?`<table><thead><tr><th>Programa</th><th>Categoría</th><th>Equipo</th><th></th></tr></thead><tbody>${L.map(([p,i])=>`<tr><td><b>${e(p.titulo)}</b>${p.video?` <span class="pill">Vídeo</span>`:""}<small>/programas/${e(code(p))}/</small></td><td>${e(p.categoria)}</td><td>${(p.equipo||[]).length}</td><td class="ac"><button class="b sm" data-a="p-up" data-i="${i}" aria-label="Subir"${i&&!q?"":" disabled"}>↑</button><button class="b sm" data-a="p-down" data-i="${i}" aria-label="Bajar"${i<D.programas.length-1&&!q?"":" disabled"}>↓</button><a class="b sm" href="programas/${e(code(p))}/" target="_blank" rel="noopener">Ver</a><button class="b sm" data-a="p-edit" data-i="${i}">Editar</button><button class="b sm danger" data-a="p-del" data-i="${i}">Eliminar</button></td></tr>`).join("")}</tbody></table>`:vacio(q?"Ningún programa coincide con la búsqueda.":"Aún no hay programas. Sube el primero.")}</div>`;
  },
  equipo(){
-  return SECC.map(([s,et])=>`<div class="card"><div class="ch"><h2>${et}</h2><button class="b" data-a="m-new" data-i="${s}">Añadir persona</button></div>${D.equipo[s].length?`<table><tbody>${D.equipo[s].map((m,i)=>`<tr><td><b>${e(m.nombre)}</b></td><td>${e(m.rol||"")}</td><td class="ac"><button class="b sm" data-a="m-edit" data-i="${s}:${i}">Editar</button><button class="b sm danger" data-a="m-del" data-i="${s}:${i}">Eliminar</button></td></tr>`).join("")}</tbody></table>`:vacio("Nadie en esta sección todavía.")}</div>`).join("");
+  return SECC.map(([s,et])=>`<div class="card"><div class="ch"><h2>${et}</h2><button class="b" data-a="m-new" data-i="${s}">Añadir persona</button></div>${D.equipo[s].length?`<table><tbody>${D.equipo[s].map((m,i)=>`<tr><td><b>${e(m.nombre)}</b></td><td>${e(m.rol||"")}</td><td class="ac"><button class="b sm" data-a="m-up" data-i="${s}:${i}" aria-label="Subir"${i?"":" disabled"}>↑</button><button class="b sm" data-a="m-down" data-i="${s}:${i}" aria-label="Bajar"${i<D.equipo[s].length-1?"":" disabled"}>↓</button><button class="b sm" data-a="m-edit" data-i="${s}:${i}">Editar</button><button class="b sm danger" data-a="m-del" data-i="${s}:${i}">Eliminar</button></td></tr>`).join("")}</tbody></table>`:vacio("Nadie en esta sección todavía.")}</div>`).join("");
  },
  formularios(){
   const n=D.formularios.length;
@@ -140,12 +141,13 @@ function formP(i){
  ${F("Descripción",`<textarea name="descripcion" required rows="3">${e(p.descripcion)}</textarea>`)}
  <div class="g2">${F("Imagen",`<input type="file" name="imagen" accept="image/*">`,"Cuadrada, 1000 × 1000 px (mínimo 800). JPG, PNG o WebP."+(i==null?"":" Si no eliges otra, se mantiene la actual."))}${F("Audio .mp3",`<input type="file" name="audio" accept=".mp3,audio/mpeg">`,i==null?"Obligatorio.":"Si no eliges otro, se mantiene el actual.")}</div>
  <div class="fld"><span>¿Es un videopodcast?</span><div class="checks"><label><input type="radio" name="vp" value="no"${p.video?"":" checked"}> No</label><label><input type="radio" name="vp" value="si"${p.video?" checked":""}> Sí</label></div></div>
- <div id="cv"${p.video?"":" hidden"}>${F("Enlace de YouTube",`<input type="url" name="video" placeholder="https://www.youtube.com/watch?v=…" value="${e(p.video)}">`)}</div>
+ <div id="cv"${p.video?"":" hidden"}>${F("Enlace de YouTube",`<input type="url" name="video" placeholder="https://www.youtube.com/watch?v=…" value="${e(p.video)}">`,"El vídeo se verá dentro de la página del programa.")}</div>
  <div class="fld"><span>Equipo que lo ha realizado</span><div class="checks">${all.length?all.map(n=>`<label><input type="checkbox" name="eq" value="${e(n)}"${eq.includes(n)?" checked":""}> ${e(n)}</label>`).join(""):"Añade antes personas en la sección Equipo."}</div></div>
  ${F("Invitados (opcional)",`<input name="invitados" placeholder="Alu42, Profe3" value="${e((p.invitados||[]).join(", "))}">`,"Separados por comas.")}`,
  "Guardar programa",async f=>{
   const s=slug(f.codigo.value),a=f.audio.files[0],im=f.imagen.files[0],old=i==null?null:D.programas[i],si=f.vp.value==="si",video=si?f.video.value.trim():"";
   if(si&&!YT.test(video)){toast("Pon un enlace válido de YouTube (youtube.com o youtu.be).","err");return false}
+  if(si&&!yt(video)){toast("No reconozco el vídeo. Copia el enlace completo desde la barra de direcciones de YouTube.","err");return false}
   if(!s||D.programas.some(x=>x!==old&&code(x)===s)){toast(`Ya existe un programa con el código «${s}». Elige otro.`,"err");return false}
   if(!old&&!a){toast("Falta el archivo .mp3.","err");return false}
   if(im&&window.createImageBitmap){try{const bm=await createImageBitmap(im),w=bm.width,h=bm.height;if(bm.close)bm.close();
@@ -196,6 +198,7 @@ document.addEventListener("click",async ev=>{
  else if(a==="a-del"){if(await ask(`¿Eliminar ${i}? Ningún programa lo usa. No se puede deshacer.`)){const[d,n]=i.split("/");await(await dir(d)).removeEntry(n);dirty=true;toast("Archivo eliminado");recargar()}}
  else if(a==="a-sin"){const uso=new Set(D.programas.flatMap(p=>[p.audio,p.imagen]).filter(Boolean)),L=FILES.filter(f=>!uso.has(f.path));
   if(await ask(`¿Eliminar ${L.length} archivos que ningún programa usa? No se puede deshacer.`,"Eliminar todos")){for(const f of L)await(await dir(f.d)).removeEntry(f.n);dirty=true;toast(`${L.length} archivos eliminados`);recargar()}}
+ else if(a==="m-up"||a==="m-down"){const[s,n]=i.split(":"),L=D.equipo[s],k=+n+(a==="m-up"?-1:1);[L[+n],L[k]]=[L[k],L[+n]];await hecho("Orden actualizado")}
  else if(a==="m-new")formM(i);
  else if(a==="m-edit"){const[s,n]=i.split(":");formM(s,+n)}
  else if(a==="m-del"){const[s,n]=i.split(":"),m=D.equipo[s][+n];if(await ask(`¿Eliminar a ${m.nombre} del equipo?`)){D.equipo[s].splice(+n,1);await hecho("Persona eliminada")}}

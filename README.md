@@ -81,7 +81,7 @@ window.RB_DATA = {
 
 - `formularioUrl` (botón de **Inscríbete**) y `formularios` (página **Formularios**) se editan desde el panel, en *Ajustes* y *Formularios*. Cada formulario tiene `titulo`, `descripcion`, `url`, `abierto` (true/false), `limite` (fecha `AAAA-MM-DD`, opcional) y `para` (destinatarios, opcional).
 - Un programa sin `imagen` muestra la letra inicial del título sobre un fondo de color.
-- Un programa con `video` muestra el botón **Ver el videopodcast** en su página y la etiqueta «Vídeo-podcast» en su tarjeta.
+- Un programa con `video` muestra el vídeo **incrustado** en su página (con un enlace «Abrir en YouTube») y la etiqueta «Vídeo-podcast» en su tarjeta.
 
 ---
 
@@ -140,6 +140,8 @@ La sección **Archivos** lista todo lo que hay en `audios/` e `imagenes/` con su
 ### Equipo
 
 El formulario **Añadir miembro del equipo** añade a una persona a una de las tres secciones de la página Equipo: *Profesorado*, *Coordinación* o *Equipo*. Tiene que estar dada de alta antes de poder marcarla en un programa.
+
+Las flechas ↑ ↓ de cada fila cambian el orden dentro de su sección, y ese es el orden que sale en la web. Las tarjetas muestran solo el nombre y el curso, sin icono.
 
 En la web, cada sección muestra **4 personas por fila** (2 en pantallas medianas y 1 en móviles). Si una sección tiene **menos de 4**, sus tarjetas se muestran centradas.
 
