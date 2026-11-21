@@ -102,9 +102,11 @@ window.RB_DATA = {
       "categoria": "Entrevistas",
       "imagen": "",
       "audio": "audios/bezmi-sessions-demo.mp3",
+      "video": "https://www.youtube.com/watch?v=1YlGArMx_N4",
       "equipo": [
         "Alumno/a Ejemplo 1"
-      ]
+      ],
+      "invitados": []
     },
     {
       "titulo": "Recreo al Aire",
