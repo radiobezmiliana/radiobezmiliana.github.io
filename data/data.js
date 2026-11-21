@@ -102,7 +102,7 @@ window.RB_DATA = {
       "categoria": "Entrevistas",
       "imagen": "",
       "audio": "audios/bezmi-sessions-demo.mp3",
-      "video": "https://www.youtube.com/watch?v=1YlGArMx_N4",
+      "video": "",
       "equipo": [
         "Alumno/a Ejemplo 1"
       ],
