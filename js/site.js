@@ -4,7 +4,7 @@ const e=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"
 const slug=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 const code=p=>p.codigo||slug(p.titulo);
 const url=p=>`${R}programas/${encodeURIComponent(code(p))}/`;
-const pages=[["index","Inicio"],["programas","Programas"],["equipo","Equipo"],["contacto","Contacto"],["inscribete","Inscríbete"]];
+const pages=[["index","Inicio"],["programas","Programas"],["equipo","Equipo"],["formularios","Formularios"],["contacto","Contacto"],["inscribete","Inscríbete"]];
 const here=cur=="programa"?"programas":cur;
 document.body.insertAdjacentHTML("afterbegin",`<header class="site-header"><nav class="nav container"><a class="brand" href="${R}index.html"><img src="${R}assets/logo-radio-bezmiliana.png" alt="Logo de Radio Bezmiliana"><span>Radio Bezmiliana</span></a><button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button><div class="nav-links">${pages.map(([p,t])=>`<a href="${R}${p}.html"${p==here?' aria-current="page"':""}>${t}</a>`).join("")}</div></nav></header>`);
 document.body.insertAdjacentHTML("beforeend",`<footer><div class="container footer-inner"><div>IES Bezmiliana (Rincón de la Victoria, Málaga).</div><span class="copyright">© 2026 Radio Bezmiliana</span></div></footer>`);
@@ -36,8 +36,8 @@ ${otros.length?`<section class="section" style="padding-top:0"><div class="conta
 if(cur=="equipo")[["profesorado","eq-prof"],["coordinacion","eq-coord"],["miembros","eq-miembros"]].forEach(([k,id])=>{const E=D.equipo||{},l=E[k]||(k=="miembros"?E.alumnado:null)||[];
  $(id).classList.toggle("few",l.length>0&&l.length<4);
  $(id).innerHTML=l.length?l.map(m=>`<article class="team-card"><div class="avatar">${e(m.nombre[0])}</div><div><h3>${e(m.nombre)}</h3><p>${e(m.rol||"")}</p></div></article>`).join(""):"<p>Próximamente.</p>"});
-if(cur=="inscribete"){
- $("abrir").onclick=()=>D.formularioUrl?window.open(D.formularioUrl,"_blank","noopener"):$("dlg").showModal();
- $("cerrar").onclick=()=>$("dlg").close();
+if(cur=="inscribete"&&D.formularioUrl){const a=document.querySelector(".actions .btn-primary");if(a)a.href=D.formularioUrl}
+if(cur=="formularios"){const L=D.formularios||[],fe=d=>new Date(d+"T12:00").toLocaleDateString("es-ES",{day:"numeric",month:"long",year:"numeric"});
+ $("lista-f").innerHTML=L.length?L.map(x=>`<article class="program-card"><span class="tag">${x.abierto?"Abierto":"Cerrado"}</span><h3>${e(x.titulo)}</h3><p>${e(x.descripcion||"")}</p>${x.para?`<p class="crew"><b>Para:</b> ${e(x.para)}</p>`:""}${x.limite?`<p class="crew"><b>Hasta el:</b> ${fe(x.limite)}</p>`:""}${x.abierto&&/^https?:\/\//.test(x.url)?`<a class="btn btn-primary" href="${e(x.url)}" target="_blank" rel="noopener noreferrer">Abrir formulario</a>`:`<p class="crew">Este formulario está cerrado.</p>`}</article>`).join(""):"<p>Ahora mismo no hay formularios disponibles.</p>";
 }
 })();

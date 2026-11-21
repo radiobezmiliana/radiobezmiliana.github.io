@@ -79,7 +79,7 @@ window.RB_DATA = {
 };
 ```
 
-- `formularioUrl` no se puede cambiar desde el panel: edítalo a mano en `data.js`. Si está vacío, el botón de **Inscríbete** muestra un aviso en lugar de abrir el formulario.
+- `formularioUrl` (botón de **Inscríbete**) y `formularios` (página **Formularios**) se editan desde el panel, en *Ajustes* y *Formularios*. Cada formulario tiene `titulo`, `descripcion`, `url`, `abierto` (true/false), `limite` (fecha `AAAA-MM-DD`, opcional) y `para` (destinatarios, opcional).
 - Un programa sin `imagen` muestra la letra inicial del título sobre un fondo de color.
 - Un programa con `video` muestra el botón **Ver el videopodcast** en su página y la etiqueta «Vídeo-podcast» en su tarjeta.
 
@@ -128,6 +128,14 @@ En la lista **Programas** pulsa **Editar**. El formulario se rellena con los dat
 ### Eliminar un programa
 
 Quita el programa de `data.js`, borra su página y lo saca del sitemap. **No borra** los archivos de `audios/` ni `imagenes/`: puedes eliminarlos a mano si ya no los necesitas.
+
+### Ordenar programas
+
+En **Programas**, las flechas ↑ ↓ cambian el orden. Ese orden es el de la web, y los 3 primeros salen en Inicio. Las flechas se desactivan mientras hay una búsqueda activa.
+
+### Archivos
+
+La sección **Archivos** lista todo lo que hay en `audios/` e `imagenes/` con su tamaño y el programa que lo usa. Los archivos **sin usar** (por ejemplo, tras eliminar un programa) se pueden borrar uno a uno o todos a la vez. Los archivos en uso no se pueden borrar desde aquí. Avisa si algún archivo supera los 100 MB de GitHub.
 
 ### Equipo
 

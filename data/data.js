@@ -1,5 +1,15 @@
 window.RB_DATA = {
-  "formularioUrl": "",
+  "formularioUrl": "https://forms.gle/n8F2ccMbpwPYGBrF7",
+  "formularios": [
+    {
+      "titulo": "Inscripción a Radio Bezmiliana",
+      "descripcion": "Apúntate a la radio del instituto: locución, sonido, redacción, redes o diseño.",
+      "url": "https://forms.gle/n8F2ccMbpwPYGBrF7",
+      "abierto": true,
+      "limite": "",
+      "para": "Alumnado del IES Bezmiliana"
+    }
+  ],
   "categorias": [
     "Noticias",
     "Música",
